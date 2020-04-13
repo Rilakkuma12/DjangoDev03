@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Projects(models.Model):
     id = models.AutoField(verbose_name='id主键', primary_key=True, help_text='id主键')
     project_name = models.CharField(verbose_name='项目名称', max_length=30, help_text='项目名称', unique=True)
