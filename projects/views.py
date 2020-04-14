@@ -26,11 +26,11 @@ class ProjectList(mixins.ListModelMixin,
     filterset_fields = ['project_name', 'leader', 'tester']
     ordering_fields = ['id', 'project_name']
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         """获取项目列表"""
-        return self.list(request)
+        return self.list(request, *args, **kwargs)
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         """  
         :param request: 
         :return: 
@@ -39,23 +39,24 @@ class ProjectList(mixins.ListModelMixin,
         3.数据库新增项目
         4.返回单个json（处理结果）
         """
-        return self.create(request)
+        return self.create(request, *args, **kwargs)
 
 
 class ProjectDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     GenericAPIView):
+    # 必须的2个属性
     queryset = Projects.objects.all()
     serializer_class = serializers.ProjectModelSerializer
 
-    def get(self, request, pk):
+    def get(self, request, *args, **kwargs):
         """获取指定项目信息"""
-        return self.retrieve(request)
+        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, pk):
+    def put(self, request, *args, **kwargs):
         """更新指定项目"""
-        return self.update(request)
+        return self.update(request, *args, **kwargs)
 
-    def delete(self, request, pk):
-        return self.destroy(request)
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
