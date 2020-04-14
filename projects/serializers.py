@@ -52,9 +52,9 @@ class ProjectModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
         # 指定序列化输出
-        # fields = '__all__'
+        fields = '__all__'
         # fields = ('id' 'name', 'leader', 'tester', 'interfaces_set')
-        exclude = ('id', 'create_time', 'update_time')
+        # exclude = ('id', 'create_time', 'update_time')
         # read_only_fields = ('desc', )
 
         # extra_kwargs = {
