@@ -16,7 +16,7 @@ from . import serializers
 # Create your views here.
 
 
-# 实现分页、排序、过滤
+# 实现过滤、排序、分页
 class ProjectList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   GenericAPIView):
@@ -31,14 +31,7 @@ class ProjectList(mixins.ListModelMixin,
         return self.list(request)
 
     def post(self, request):
-        """  
-        :param request: 
-        :return: 
-        1.接收参数，转换类型
-        2.校验
-        3.数据库新增项目
-        4.返回单个json（处理结果）
-        """
+        """新增项目"""
         return self.create(request)
 
 
@@ -58,4 +51,5 @@ class ProjectDetail(mixins.RetrieveModelMixin,
         return self.update(request)
 
     def delete(self, request, pk):
+        """删除指定项目"""
         return self.destroy(request)
