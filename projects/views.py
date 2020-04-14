@@ -30,22 +30,9 @@ class ProjectList(mixins.ListModelMixin,
         """获取项目列表"""
         return self.list(request, *args, **kwargs)
 
-<<<<<<< HEAD
     def post(self, request, *args, **kwargs):
-        """  
-        :param request: 
-        :return: 
-        1.接收参数，转换类型
-        2.校验
-        3.数据库新增项目
-        4.返回单个json（处理结果）
-        """
-        return self.create(request, *args, **kwargs)
-=======
-    def post(self, request):
         """新增项目"""
-        return self.create(request)
->>>>>>> 5a79eb40511307feece0a68cd16814c38fa59238
+        return self.create(request, *args, **kwargs)
 
 
 class ProjectDetail(mixins.RetrieveModelMixin,
@@ -64,11 +51,6 @@ class ProjectDetail(mixins.RetrieveModelMixin,
         """更新指定项目"""
         return self.update(request, *args, **kwargs)
 
-<<<<<<< HEAD
     def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-=======
-    def delete(self, request, pk):
         """删除指定项目"""
-        return self.destroy(request)
->>>>>>> 5a79eb40511307feece0a68cd16814c38fa59238
+        return self.destroy(request, *args, **kwargs)
