@@ -28,8 +28,19 @@ class ProjectViewSet(viewsets.ModelViewSet):
     ordering_fields = ['id', 'project_name']
 
     @action(methods=['get'], detail=False)
-    def names(self):
-        pass
+    def names(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        # serializer = serializers.ProjectNameModelSerializer(instance=queryset, many=True)
+        serializer = self.get_serializer(instance=queryset, many=True)
+        return Response(serializer.data)
 
+    # @action(methods=['get'], detail=True)
+    # def interfaces(self, request, *args, **kwargs):
+    #     queryset = self.get_queryset()
+    #     serializer = self.get_serializer(instance=queryset, many=True)
+    #     return Response(serializer.data)
+
+    def get_serializer_class(self):
+        return serializers.ProjectNameModelSerializer if self.action == 'name' else serializers.ProjectModelSerializer
 
 

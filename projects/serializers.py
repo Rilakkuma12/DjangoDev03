@@ -62,3 +62,10 @@ class ProjectModelSerializer(serializers.ModelSerializer):
         #         'read_only': True
         #     }
         # }
+
+
+class ProjectNameModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Projects
+        fields = ('id', 'project_name')
+
