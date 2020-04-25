@@ -27,6 +27,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     filterset_fields = ['project_name', 'leader', 'tester']
     ordering_fields = ['id', 'project_name']
 
+    # detail=True，显示详情数据
     @action(methods=['get'], detail=False)
     def names(self, request, *args, **kwargs):
         queryset = self.get_queryset()
