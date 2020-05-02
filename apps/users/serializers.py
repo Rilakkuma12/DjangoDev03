@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
@@ -10,6 +11,32 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+=======
+#!/user/bin/env python3
+# -*- coding: utf-8 -*-
+# @Author   : Tikyo
+# @Datetime : 2020-04-26 09:37
+from django.contrib.auth.models import User
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    password_confirm = serializers.CharField(
+        label='确认密码',
+        help_text='确认密码',
+        write_only=True,
+        min_length=6,
+        max_length=20,
+        error_message={
+            'min_length': '仅允许6-20个字符的用户名',
+            'max_length': '仅允许6-20个字符的用户名'}
+    )
+    token = serializers.CharField(label='生成的token', help_text='生成的token', read_only=True)
+
+    class Meta:
+        model: User
+>>>>>>> origin/master
         fields = ('id', 'username', 'password', 'email', 'token', 'password_confirm')
 
         extra_kwargs = {
@@ -18,10 +45,17 @@ class RegisterSerializer(serializers.ModelSerializer):
                 'help_text': '用户名',
                 'min_length': 6,
                 'max_length': 20,
+<<<<<<< HEAD
                 'error_messages': {
                     'min_length': '仅允许6-20个字符的用户名',
                     'max_length': '仅允许6-20个字符的用户名'
                 }
+=======
+                'error_message': {
+                    'min_length': '仅允许6-20个字符的用户名',
+                    'max_length': '仅允许6-20个字符的用户名'
+                },
+>>>>>>> origin/master
             },
             'email': {
                 'label': '邮箱',
@@ -36,10 +70,17 @@ class RegisterSerializer(serializers.ModelSerializer):
                 'write_only': True,
                 'min_length': 6,
                 'max_length': 20,
+<<<<<<< HEAD
                 'error_messages': {
                     'min_length': '仅允许6-20个字符的用户名',
                     'max_length': '仅允许6-20个字符的用户名'
                 }
+=======
+                'error_message': {
+                    'min_length': '仅允许6-20个字符的用户名',
+                    'max_length': '仅允许6-20个字符的用户名'
+                },
+>>>>>>> origin/master
             }
         }
 
@@ -47,6 +88,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         password = attrs.get('password')
         password_confirm = attrs.get('password_confirm')
         if password != password_confirm:
+<<<<<<< HEAD
             raise serializers.ValidationError('两次输入的密码不一致！')
         return attrs
 
@@ -73,4 +115,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 
+=======
+            raise serializers.ValidationError('两次输入的密码不一致')
+        return attrs
+
+>>>>>>> origin/master
 

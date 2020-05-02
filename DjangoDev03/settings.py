@@ -27,6 +27,9 @@ SECRET_KEY = '&dpdtjz(a#6#=w3o@&4gs2sy+@gh!xzr(e5h3af(dct^k6&q$%'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+# 跨域相关
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -203,4 +206,7 @@ LOGGING = {
     }
 }
 
-
+JWT_AUTH = {
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'utils.jwt_handler.jwt_response_payload_handler',
+}

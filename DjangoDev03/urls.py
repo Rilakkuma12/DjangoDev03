@@ -25,7 +25,12 @@ urlpatterns = [
     path('interfaces/', include('interfaces.urls')),
     path('user/', include('users.urls')),
     path('docs/', include_docs_urls(title='测试平台接口文档')),
+<<<<<<< HEAD
     # 用户模块在这儿
     path('api/', include('rest_framework.urls')),
 
+=======
+    path('api/', include('rest_framework.urls')),
+    path('', include('users.urls'))
+>>>>>>> origin/master
 ]
