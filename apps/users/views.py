@@ -1,12 +1,8 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
-# Create your views here.
-<<<<<<< HEAD
-from rest_framework.generics import CreateAPIView
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
-=======
->>>>>>> origin/master
 from . import serializers
 
 
@@ -14,13 +10,20 @@ class RegisterView(CreateAPIView):
     serializer_class = serializers.RegisterSerializer
 
 
-<<<<<<< HEAD
 class UsernameValidateView(APIView):
-    pass
+    def get(self, request, username):
+        data_dict = {
+            "username": username,
+            "count": User.objects.filter(username=username).count()
+        }
+        return Response(data_dict)
 
 
 class EmailValidateView(APIView):
-    pass
-=======
+    def get(self, request, email):
+        data_dict = {
+            "username": email,
+            "count": User.objects.filter(email=email).count()
+        }
+        return Response(data_dict)
 
->>>>>>> origin/master

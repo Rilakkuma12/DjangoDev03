@@ -11,14 +11,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True,
         min_length=6,
         max_length=20,
-        error_message={
+        error_messages={
             'min_length': '仅允许6-20个字符的用户名',
             'max_length': '仅允许6-20个字符的用户名'}
     )
     token = serializers.CharField(label='生成的token', help_text='生成的token', read_only=True)
 
     class Meta:
-        model: User
+        model = User
         fields = ('id', 'username', 'password', 'email', 'token', 'password_confirm')
 
         extra_kwargs = {
@@ -52,7 +52,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             }
         }
 
-
     def validate(self, attrs):
         password = attrs.get('password')
         password_confirm = attrs.get('password_confirm')
@@ -79,13 +78,4 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 
-
-
-
-
-=======
-            raise serializers.ValidationError('两次输入的密码不一致')
-        return attrs
-
->>>>>>> origin/master
 

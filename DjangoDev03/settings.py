@@ -158,7 +158,7 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {
     # 设置token过期时间，默认为5分钟，可以指定为1天
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
     # 修改token值的前缀
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     # 响应返回值
@@ -206,7 +206,4 @@ LOGGING = {
     }
 }
 
-JWT_AUTH = {
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'utils.jwt_handler.jwt_response_payload_handler',
-}
+
