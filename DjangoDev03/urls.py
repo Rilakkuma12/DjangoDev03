@@ -23,6 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('projects/', include('projects.urls')),
     path('interfaces/', include('interfaces.urls')),
+    path('user/', include('users.urls')),
     path('docs/', include_docs_urls(title='测试平台接口文档')),
-    path('api/', include('rest_framework.urls'))
+    # 用户模块在这儿
+    path('api/', include('rest_framework.urls')),
+
 ]

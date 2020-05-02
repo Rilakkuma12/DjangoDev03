@@ -30,7 +30,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]  # 过滤引擎,在setting里面已经有了
     filterset_fields = ['project_name', 'leader', 'tester']
     ordering_fields = ['id', 'project_name']
-    permission_classes = [permissions.IsAuthenticated]
+    # 需要登录才能访问
+    # permission_classes = [permissions.IsAuthenticated]
 
     # detail=True，显示详情数据
     @action(methods=['get'], detail=False)

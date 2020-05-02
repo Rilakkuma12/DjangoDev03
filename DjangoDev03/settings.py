@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import datetime
 import os
 import sys
 
@@ -151,6 +151,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+}
+
+JWT_AUTH = {
+    # 设置token过期时间，默认为5分钟，可以指定为1天
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    # 修改token值的前缀
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    # 响应返回值
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'utils.jwt_handle.jwt_response_payload_handler',
 }
 
 LOGGING = {
