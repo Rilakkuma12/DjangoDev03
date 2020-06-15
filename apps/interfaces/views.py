@@ -6,7 +6,7 @@ from datetime import timedelta
 
 from django.http import HttpResponse, JsonResponse
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status, mixins
+from rest_framework import status, mixins, viewsets
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import GenericAPIView
 from rest_framework.pagination import PageNumberPagination
@@ -57,3 +57,11 @@ class InterfaceDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         """删除指定项目"""
         return self.destroy(request, *args, **kwargs)
+
+
+class InterfaceViewSet(viewsets.ModelViewSet):
+    queryset = Interfaces.objects.all()
+    serializer_class = serializers.InterfaceModelSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['id', 'interface_name']
+    ordering_fields = ['id', 'interface_name']

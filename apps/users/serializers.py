@@ -1,3 +1,5 @@
+import re
+
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
@@ -19,7 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email', 'token', 'password_confirm')
+        fields = ('id', 'user_name', 'password', 'email', 'token', 'password_confirm')
 
         extra_kwargs = {
             'username': {
@@ -53,8 +55,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
+        email = attrs.get('email')
         password = attrs.get('password')
         password_confirm = attrs.get('password_confirm')
+        if not re.match(r'^[0-9a-zA-Z_]{0,19}+@[0-9a-zA-Z_]+(\.[a-zA-Z0-9_-]+)+$', email):
+            raise serializers.ValidationError('邮箱格式不正确！')
         if password != password_confirm:
             raise serializers.ValidationError('两次输入的密码不一致！')
         return attrs
