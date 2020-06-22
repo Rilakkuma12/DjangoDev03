@@ -22,7 +22,7 @@ class UsernameValidateView(APIView):
 class EmailValidateView(APIView):
     def get(self, request, email):
         data_dict = {
-            "username": email,
+            "email": email,
             "count": User.objects.filter(email=email).count()
         }
         return Response(data_dict)

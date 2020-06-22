@@ -21,7 +21,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'user_name', 'password', 'email', 'token', 'password_confirm')
+        fields = ('id', 'username', 'password', 'email', 'token', 'password_confirm')
 
         extra_kwargs = {
             'username': {
@@ -58,7 +58,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         email = attrs.get('email')
         password = attrs.get('password')
         password_confirm = attrs.get('password_confirm')
-        if not re.match(r'^[0-9a-zA-Z_]{0,19}+@[0-9a-zA-Z_]+(\.[a-zA-Z0-9_-]+)+$', email):
+        if not re.match(r'^([A-Za-z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9_-]+)$', email):
             raise serializers.ValidationError('邮箱格式不正确！')
         if password != password_confirm:
             raise serializers.ValidationError('两次输入的密码不一致！')

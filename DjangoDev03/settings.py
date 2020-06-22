@@ -147,6 +147,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 3,  # 每页显示条数
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 指定使用token认证
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
