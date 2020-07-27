@@ -13,8 +13,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 
+from interfaces.models import Interfaces
 from .models import Projects
 from . import serializers
+from .utils import get_count_by_project
+
 logger = logging.getLogger("test")
 # Create your views here.
 
@@ -50,6 +53,29 @@ class ProjectViewSet(viewsets.ModelViewSet):
     #     return Response(serializer.data)
 
     def get_serializer_class(self):
-        return serializers.ProjectNameModelSerializer if self.action == 'name' else serializers.ProjectModelSerializer
+        if self.action == 'name':
+            return serializers.ProjectNameModelSerializer
+        elif self.action == 'interfaces':
+            return serializers.InterfacesByProjectIdSerializer
+        else:
+            return serializers.ProjectModelSerializer
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        response.data['result'] = get_count_by_project(response.data['result'])
+        return response
+
+    @action(detail=True)
+    def interfaces(self, request, pk=None):
+        interface_obj = Interfaces.objects.filter(project_id=pk)
+        one_list = []
+        for obj in interface_obj:
+            one_list.append({
+                "id": obj.id,
+                "name": obj.name
+            })
+        return Response(one_list)
+
+
 
 

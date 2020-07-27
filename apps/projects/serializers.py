@@ -1,4 +1,7 @@
 from rest_framework import serializers
+
+from debugtalks.models import DebugTalks
+from interfaces.models import Interfaces
 from .models import Projects
 
 
@@ -22,10 +25,35 @@ class ProjectModelSerializer(serializers.ModelSerializer):
         #         'read_only': True
         #     }
         # }
+    def create(self, validated_data):
+        project_obj = super().create(validated_data)
+        DebugTalks.objects.create(project=project_obj)
 
 
 class ProjectNameModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
         fields = ('id', 'project_name')
+
+
+class InterfaceNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Interfaces
+        fields = ('id', 'name')
+
+
+class InterfacesByProjectIdSerializer(serializers.ModelSerializer):
+    interfaces = InterfaceNameSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Projects
+        fields = ('id', 'interfaces')
+
+
+
+
+
+
+
+
 

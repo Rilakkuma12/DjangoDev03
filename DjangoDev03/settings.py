@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'interfaces.apps.InterfacesConfig',
     'users.apps.UsersConfig',
+    'debugtalks.apps.DebugtalksConfig',
+    'testsuites.apps.TestsuitesConfig',
+    'testcases.apps.TestcasesConfig',
     'corsheaders',
 ]
 
